@@ -1,10 +1,10 @@
 # 🚀 gemini-nano-cpp - Run Gemini Nano Locally Without Chrome
 
-[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp/releases)
 
 gemini-nano-cpp lets you use Chrome’s on-device Gemini Nano AI without opening Chrome. It runs on your own Windows computer, keeps your questions and images on your machine, and gives you a simple way to chat with a local AI, work with pictures, and connect other local apps. You do not need a Google account, a cloud# 🤖 gemini-nano-cpp - Use Gemini Nano Without Chrome
 
-[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-6c5ce7?style=for-the-badge&labelColor=fdcb6e&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-6c5ce7?style=for-the-badge&labelColor=fdcb6e&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp/releases)
 
 gemini-nano-cpp is a Windows program that lets you use Chrome’s on-device Gemini Nano AI without opening Chrome. You can chat with a local AI, ask questions about images, and keep your messages on your own computer. The app can run on a graphics card or a processor, so it fits different Windows computers. You do not need to be a programmer to use the main chat window.
 
@@ -30,7 +30,7 @@ The app is meant for everyday use first. You can ignore the advanced parts and u
 
 ## 📥 Download and Setup
 
-Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp).
+Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp/releases).
 
 Use this page to get the application for your Windows computer. The download link at the top of this page and the link in this section both point to the same official page.
 
@@ -103,7 +103,7 @@ Yes. Use the image button, choose a picture, and type your question.
 **Will my data be uploaded?**  
 The app is built for on-dev# 🚀 gemini-nano-cpp - Run Local Gemini Nano Easily
 
-[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp)
+[![Download gemini-nano-cpp](https://img.shields.io/badge/Download-gemini--nano--cpp-ff6b6b?style=for-the-badge&labelColor=4ecdc4&logo=github)](https://github.com/ShiyuBaddie/gemini-nano-cpp/releases)
 
 gemini-nano-cpp is a Windows application for using Chrome’s on-device Gemini Nano AI without opening Chrome. It gives you a local chat window, image input, and on-device AI processing on your own computer. You do not need programming knowledge to use the main app. The project also includes command line use and an OpenAI-compatible API for advanced local setups.
 
@@ -130,7 +130,7 @@ You can ignore the advanced parts and use the normal chat window. If you later w
 
 ## 📥 Download and Setup
 
-Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp).
+Visit this link to download the application: [Download gemini-nano-cpp](https://github.com/ShiyuBaddie/gemini-nano-cpp/releases).
 
 Use the official project page to get the Windows application. The download button at the top of this page and the link in this section both point to the same official page.
 
